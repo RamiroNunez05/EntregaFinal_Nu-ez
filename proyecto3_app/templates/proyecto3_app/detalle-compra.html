@@ -1,0 +1,19 @@
+{% extends "padre.html" %}
+{% load static %}
+
+{% block titulo %}
+  <h2>Detalle de la Compra</h2>
+{% endblock titulo %}
+{% block subtitulo %}Compra Cualquier Articulo en lo que Tarda un Click{% endblock subtitulo %}
+{% block imagen %}url('{% static 'imagenes/market.jpg' %}'){% endblock imagen %}
+
+{% block cajas %}
+
+
+<h1>Detalles del Articulo</h1>
+<p><strong>Descripción:</strong> {{ compra.descripcion }}</p>
+<p><strong>Precio:</strong> {{ compra.precio }}</p>
+<p><strong>Cantidad:</strong> {{ compra.cantidad }}</p>
+
+
+{% endblock %}

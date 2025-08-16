@@ -1,0 +1,47 @@
+{% extends "padre.html" %}
+{% load static %}
+{% block titulo %}
+  <h2>Compra en la Tienda</h2>
+{% endblock titulo %}
+{% block subtitulo %}Compra Cualquier Articulo en lo que Tarda un Click{% endblock subtitulo %}
+{% block imagen %}style="background-image: url('{% static 'imagenes/market.jpg' %}')"{% endblock imagen %}
+{% block cajas %}
+  <div style="display: flex; flex-direction: column; align-items: center; margin-top: 2.5rem;">
+    <form action="" method="POST" style="
+      font-family: 'Montserrat', 'Open Sans', Arial, sans-serif;
+      background: rgba(255,255,255,0.95);
+      border-radius: 1.2rem;
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+      padding: 1.2rem 3.5rem 1.2rem 3.5rem; /* Menos alto, más ancho */
+      min-width: 420px;
+      max-width: 520px;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      transition: box-shadow 0.3s;
+      border: 1px solid #ececec;
+    " onfocusin="this.style.boxShadow='0 12px 40px 0 rgba(31,38,135,0.22)'" onfocusout="this.style.boxShadow='0 8px 32px 0 rgba(31,38,135,0.18)'">
+      {% csrf_token %}
+      <div style="font-size: 1.15rem; font-weight: 600; color: #264653; margin-bottom: 0.2rem; text-align: center;">
+        Ingresa los datos de tu compra
+      </div>
+      {{ form.as_p }}
+      <button type="submit" style="
+        background: linear-gradient(90deg, #e76f51 0%, #f4a261 100%);
+        color: white;
+        border: none;
+        border-radius: 0.7rem;
+        padding: 0.7rem 1.2rem;
+        font-size: 1.05rem;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        cursor: pointer;
+        box-shadow: 0 2px 8px rgba(231,111,81,0.15);
+        transition: background 0.2s, transform 0.2s;
+      " onmouseover="this.style.background='linear-gradient(90deg, #f4a261 0%, #e76f51 100%)'; this.style.transform='scale(1.04)';"
+        onmouseout="this.style.background='linear-gradient(90deg, #e76f51 0%, #f4a261 100%)'; this.style.transform='scale(1)';">
+        Guardar Compra
+      </button>
+    </form>
+  </div>
+{% endblock cajas %}

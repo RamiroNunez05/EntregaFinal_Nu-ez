@@ -1,0 +1,69 @@
+{% extends "padre.html" %}
+{% load static %}
+{% block titulo %}
+  <h1>Vuelos Reservados</h1>
+{% endblock titulo %}
+{% block subtitulo %}{% endblock subtitulo %}
+{% block imagen %}style="background-image: url('{% static 'imagenes/airport.jpg' %}')"{% endblock imagen %}
+{% block cajas %}
+  <div style="display: flex; flex-direction: column; align-items: center; gap: 2rem; margin-bottom: 2rem;">
+    <form method="GET" action="{% url 'buscar-vuelos' %}" style="
+      background: #fff3e6;
+      border-left: 6px solid #f4a261;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.07);
+      border-radius: 0.75rem;
+      padding: 1.2rem 2rem;
+      min-width: 260px;
+      max-width: 340px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 1rem;
+    ">
+      <input type="text" name="destino" placeholder="Buscar vuelo por destino..." value="{{ destino }}" style="
+        flex: 1;
+        padding: 0.6rem 1rem;
+        border: 1px solid #f4a261;
+        border-radius: 0.5rem;
+        font-size: 1rem;
+        outline: none;
+      ">
+      <button type="submit" style="
+        background: #e76f51;
+        color: white;
+        border: none;
+        border-radius: 0.5rem;
+        padding: 0.6rem 1.2rem;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.2s;
+      " onmouseover="this.style.background='#f4a261'" onmouseout="this.style.background='#e76f51'">
+        Buscar
+      </button>
+    </form>
+  </div>
+  <div style="display: flex; flex-direction: column; align-items: center; gap: 1.5rem; justify-content: center;">
+    {% for vuelo in vuelos %}
+      <div style="
+        background: #fff3e6;
+        border-left: 6px solid #f4a261;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.07);
+        border-radius: 0.75rem;
+        padding: 1.2rem 2rem;
+        min-width: 260px;
+        max-width: 320px;
+        margin-bottom: 1rem;
+      ">
+        <div style="font-weight: bold; color: #e76f51; font-size: 1.1rem;">
+          Destino: {{ vuelo.destino }}
+        </div>
+        <div><strong>Origen:</strong> {{ vuelo.origen }}</div>
+        <div><strong>Fecha:</strong> {{ vuelo.fecha_salida }}</div>
+        <div><strong>Horario:</strong> {{ vuelo.horario }}</div>
+        <div><strong>Precio:</strong> $ {{ vuelo.precio }}</div>
+      </div>
+    {% empty %}
+      <p>No hay vuelos resgistrados con esa descripcion.</p>
+    {% endfor %}
+  </div>
+{% endblock cajas %}

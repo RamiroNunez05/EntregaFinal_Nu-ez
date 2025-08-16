@@ -1,0 +1,32 @@
+{% extends "padre.html" %}
+{% load static %}
+{% block titulo %}
+  <h1>Familiares Registrados</h1>
+{% endblock titulo %}
+{% block subtitulo %}Lista de Familiares{% endblock subtitulo %}
+{% block imagen %}style="background-image: url('{% static 'imagenes/familia.jpg' %}')"{% endblock imagen %}
+{% block cajas %}
+  <div style="display: flex; flex-direction: column; align-items: center; gap: 1.5rem;">
+    {% for familiar in familiares %}
+      <div style="
+        background: #e0f7fa;
+        border-left: 6px solid #00838f;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.07);
+        border-radius: 0.75rem;
+        padding: 1.2rem 2rem;
+        min-width: 260px;
+        max-width: 320px;
+        margin-bottom: 1rem;
+      ">
+        <div style="font-weight: bold; color: #006064; font-size: 1.1rem;">
+          {{ familiar.nombre }}
+        </div>
+        <div><strong>Edad:</strong> {{ familiar.edad }} años</div>
+        <div><strong>Fecha de nacimiento:</strong> {{ familiar.fecha_nacimiento }}</div>
+        <div><strong>Parentesco:</strong> {{ familiar.parentesco }}</div>
+      </div>
+    {% empty %}
+      <p>No hay familiares registrados.</p>
+    {% endfor %}
+  </div>
+{% endblock cajas %}
