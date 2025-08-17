@@ -5,6 +5,8 @@ from django.urls import reverse_lazy
 from django.contrib.auth.models import User
 from .forms import RegisterForm
 from django.contrib.auth import authenticate, login, update_session_auth_hash
+from .forms import RegisterForm, AvatarForm
+from .models import Avatar
 
 class UserRegisterView(CreateView):
     model = User
@@ -36,3 +38,14 @@ class ProfileView(DetailView):
 
     def get_object(self):
         return self.request.user
+
+class AvatarUpdateView(UpdateView):
+    model = Avatar
+    form_class = AvatarForm
+    template_name = "usuarios/avatar_update.html"
+    success_url = reverse_lazy('profile')
+
+    def get_object(self, queryset=None):
+        # Obtiene o crea el avatar asociado al usuario actual
+        avatar, created = Avatar.objects.get_or_create(user=self.request.user)
+        return avatar

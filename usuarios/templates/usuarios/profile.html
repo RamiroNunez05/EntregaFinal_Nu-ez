@@ -6,14 +6,21 @@
 {% endblock titulo %}
 {% block subtitulo %}{% endblock subtitulo %}
 {% block imagen %}style="background-image: url('{% static 'imagenes/programer.jpg' %}')"{% endblock imagen %}
-
 {% block cajas %}
-
-
-<h1>Detalles de Usuario</h1>
-<p><strong>Username:</strong> {{ user.username }}</p>
-<p><strong>Email:</strong> {{ user.email }}</p>
-
-
-
+<div style="display: flex; align-items: flex-start; gap: 2rem; margin-top: 2rem; font-family: 'Open Sans', Arial, sans-serif;">
+  <div>
+    <h1>Detalles de Usuario</h1>
+    <p><strong>Username:</strong> {{ user.username }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <a class="btn btn-primary" href="{% url 'profile' %}">Editar Perfil</a>
+  </div>
+  <div>
+    {% if user.avatar %}
+      <img src="{{ user.avatar.image.url }}" alt="Avatar" style="width: 200px; height: 200px; object-fit: cover; border-radius: 1rem;">
+    {% else %}
+      <p>No tienes un avatar configurado.</p>
+    {% endif %}
+    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url "avatar-update" %}">Actualizar Avatar</a></li>
+  </div>
+</div>
 {% endblock %}

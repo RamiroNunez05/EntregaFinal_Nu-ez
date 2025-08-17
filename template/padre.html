@@ -32,7 +32,7 @@
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url "crear-familiar" %}">Crear Familiar</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url "compra" %}">Comprar</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url "reservar-vuelo" %}">Reservar Vuelo</a></li>
-                        
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url "profile" %}">Perfil</a></li>
                             <li class="nav-item">
                                 <form action="{% url 'logout' %}" method="POST">
                                     {% csrf_token %}
@@ -48,7 +48,7 @@
             </div>
         </nav>
         <!-- Page Header-->
-        <header class="masthead" {% block imagen %}style="background-image: url('assets/img/home-bg.jpg')"{% endblock imagen %}>
+        <header class="masthead"{% block imagen %} style="background-image: url('assets/img/home-bg.jpg')"{% endblock imagen %}>
             <div class="container position-relative px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
@@ -56,7 +56,7 @@
                             <h1 style="color: white; text-shadow: 2px 2px 8px #222;">
                                 {% block titulo %}Mi Primer Página Web{% endblock titulo %}
                             </h1>
-                            <span class="subheading">{% block subtitulo %}BIenvenido a mi Primer Web Estilo Blog{% endblock subtitulo %}</span>
+                            <span class="subheading">{% block subtitulo %}Bienvenido{% endblock subtitulo %}</span>
                         </div>
                     </div>
                 </div>

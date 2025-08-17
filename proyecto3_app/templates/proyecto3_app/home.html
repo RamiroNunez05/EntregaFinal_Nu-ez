@@ -1,3 +1,12 @@
 {% extends "padre.html" %}
 {% load static %}
 {% block imagen %}style="background-image: url('{% static 'imagenes/programer.jpg' %}')"{% endblock imagen %}
+
+{% if user.is_authenticated %}
+{% block titulo %}
+ Bienvenido {{ user.username }} 
+{% endblock titulo %}
+
+{% endif %}
+
+{% block subtitulo %}Tu portal de servicios en línea{% endblock subtitulo %}
