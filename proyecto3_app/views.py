@@ -4,12 +4,15 @@ from django.http import HttpResponse
 from .models import Familiar, Compra, Vuelo
 from .forms import CompraForm, VueloForm, FamiliarForm
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
 def home(request):
     return render( request, "proyecto3_app/home.html")
 
+@login_required
 def crear_familiar(request):
     if request.method == 'POST':
         form = FamiliarForm(request.POST)
@@ -26,17 +29,19 @@ def crear_familiar(request):
     form = FamiliarForm()
     return render(request, 'proyecto3_app/crear-familiar.html', {"form": form})
 
+@login_required
 def listar_familiares(request):
     familiares = Familiar.objects.all()
     return render(request, 'proyecto3_app/listar-familiares.html', {"familiares": familiares})
 
-
+@login_required
 def buscar_compras(request):
     if request.method == 'GET':
         descripcion = request.GET.get('descripcion', '')
         compras = Compra.objects.filter(descripcion__icontains=descripcion)
         return render(request, 'proyecto3_app/ultimas-compras.html', {"compras": compras, "descripcion": descripcion})
 
+@login_required
 def reservar_vuelo(request):
     if request.method == 'POST':
         form = VueloForm(request.POST)
@@ -54,43 +59,48 @@ def reservar_vuelo(request):
     form = VueloForm()
     return render(request, 'proyecto3_app/reservar-vuelo.html', {"form": form})
 
+@login_required
 def vuelos_reservados(request):
     vuelos = Vuelo.objects.all().order_by('-id')
     return render(request, 'proyecto3_app/vuelos-reservados.html', {"vuelos": vuelos})
 
+@login_required
 def buscar_vuelos(request):
     if request.method == 'GET':
         destino = request.GET.get('destino', '')
         vuelos = Vuelo.objects.filter(destino__icontains=destino)
         return render(request, 'proyecto3_app/vuelos-reservados.html', {"vuelos": vuelos, "destino": destino})
 
-class CompraCreateView(CreateView):
+class CompraCreateView(LoginRequiredMixin, CreateView):
     model = Compra
     form_class = CompraForm
     template_name = 'proyecto3_app/tienda-compra.html'
     success_url = reverse_lazy('ultimas-compras')
 
 
-class CompraListView(ListView):
+class CompraListView(LoginRequiredMixin, ListView):
     model = Compra
     template_name = 'proyecto3_app/ultimas-compras.html'
     context_object_name = 'compra'
 
 
-class CompraUpdateView(UpdateView):
+class CompraUpdateView(LoginRequiredMixin, UpdateView):
     model = Compra
     form_class = CompraForm
     template_name = 'proyecto3_app/tienda-compra.html'
     success_url = reverse_lazy('ultimas-compras')
 
 
-class CompraDetailView(DetailView):
+class CompraDetailView(LoginRequiredMixin, DetailView):
     model = Compra
     template_name = 'proyecto3_app/detalle-compra.html'
     context_object_name = 'compra'
 
 
-class CompraDeleteView(DeleteView):
+class CompraDeleteView(LoginRequiredMixin, DeleteView):
     model = Compra
     template_name = 'proyecto3_app/eliminar-compra.html'
     success_url = reverse_lazy('ultimas-compras')
+
+def about(request):
+    return render(request, 'proyecto3_app/about.html')

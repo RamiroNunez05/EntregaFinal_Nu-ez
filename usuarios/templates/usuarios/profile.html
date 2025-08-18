@@ -11,16 +11,17 @@
   <div>
     <h1>Detalles de Usuario</h1>
     <p><strong>Username:</strong> {{ user.username }}</p>
+    <p><strong>Nombre:</strong> {{ user.first_name }}</p>
+    <p><strong>Apellido:</strong> {{ user.last_name }}</p>
     <p><strong>Email:</strong> {{ user.email }}</p>
-    <a class="btn btn-primary" href="{% url 'profile' %}">Editar Perfil</a>
+    <a class="btn btn-primary" href="{% url 'profile-update' %}">Editar Perfil</a>
   </div>
   <div>
     {% if user.avatar %}
-      <img src="{{ user.avatar.image.url }}" alt="Avatar" style="width: 200px; height: 200px; object-fit: cover; border-radius: 1rem;">
+      <img src="{{ user.avatar.image.url }}" alt="Avatar" style="width: 200px; height: 200px; object-fit: cover; border-radius: 0rem;">
     {% else %}
       <p>No tienes un avatar configurado.</p>
     {% endif %}
-    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url "avatar-update" %}">Actualizar Avatar</a></li>
   </div>
 </div>
 {% endblock %}

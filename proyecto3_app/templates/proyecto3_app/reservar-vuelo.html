@@ -27,7 +27,7 @@
       {{ form.as_p }}
       <button type="submit" style="
         font-family: 'Montserrat', 'Open Sans', Arial, sans-serif;
-        background: linear-gradient(90deg, #e76f51 0%, #f4a261 100%);
+        background: linear-gradient(90deg, #266ae8 0%, #0aa5ec 100%);
         color: white;
         border: none;
         border-radius: 0.7rem;
@@ -42,6 +42,8 @@
         onmouseout="this.style.background='linear-gradient(90deg, #e76f51 0%, #f4a261 100%)'; this.style.transform='scale(1)';">
         Listo
       </button>
+
+      <a href="{% url 'vuelos-reservados' %}" class="btn btn-sm btn-info me-1">Lista de Vuelos</a>
     </form>
   </div>
 {% endblock cajas %}
