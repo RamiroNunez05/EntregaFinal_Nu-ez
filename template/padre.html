@@ -19,7 +19,7 @@
     <body>
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
-            {% if user.avatar %}
+            {% if user.avatar and user.avatar.image %}
             <a class="navbar-brand" href="{% url "profile" %}">
                 <img src="{{ user.avatar.image.url }}" alt="Avatar" style="width: 100px; height: 100px; object-fit: cover; border-radius: 5rem;">
             </a>
