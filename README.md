@@ -8,5 +8,4 @@ python manage.py migrate
 
 python manage.py runserver
 
-Video
-link al video: https//:youbtube.com/video
+link al video: https://youtu.be/Yjp4MdC3Rvw
